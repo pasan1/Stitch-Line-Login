@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="asserts/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Home</title>
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">Stitch Line</a>
+        <form class="d-flex">
+            <button class="btn btn-outline-success m-1" type="button" id="btnLogin">Login</button>
+            <button class="btn btn-outline-danger m-1" type="button" id="btnLogout">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="d-flex justify-content-center d-flex align-items-center">
+        <div class="card" style="width: 18rem;" id="log">
+            <div class="card-body">
+                <h5 class="card-title"><span id="txtName"></span></h5>
+                <p class="card-text">Welcome to System</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;" id="notLog">
+            <div class="card-body">
+<!--                <h5 class="card-title"><span id="txtName"></span></h5>-->
+                <p class="card-text">Please Login</p>
+                <button class="btn btn-outline-success m-1" type="button" id="btnLoginC">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/additional-methods.min.js"></script>
+<script src="js/jquery.session.min.js"></script>
+<script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="asserts/fontawesome/js/all.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#btnLogin').hide();
+        $('#btnLogout').hide();
+        $('#log').hide();
+        $('#notLog').hide();
+
+        let obj = $.session.get("obj");
+        console.log("obj " + obj);
+
+        if (obj == null) {
+            $('#btnLogin').show();
+            $('#btnLogout').hide();
+            $('#log').hide();
+            $('#notLog').show();
+        } else {
+            $('#btnLogin').hide();
+            $('#btnLogout').show();
+            $('#log').show();
+            $('#notLog').hide();
+            console.log($.session.get("name"))
+            $('#txtName').text($.session.get("name"));
+        }
+    })
+
+
+    $('#btnLogout').click(function () {
+        $.session.remove("obj");
+        $('#btnLogin').show();
+        $('#btnLogout').hide();
+    });
+
+    $('#btnLogin').click(function () {
+        document.location.href = "sub/login.html";
+    });
+
+    $('#btnLoginC').click(function () {
+        document.location.href = "sub/login.html";
+    });
+
+</script>
+
+</body>
+</html>
