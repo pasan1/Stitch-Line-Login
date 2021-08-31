@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
-import java.util.Date;
 
 @Document("user")
 @Data
@@ -53,4 +52,9 @@ public class User {
     @Indexed(unique = true)
     @NotBlank(message = "Role is mandatory")
     private String role;
+
+    @Field(name = "data")
+    @Indexed(unique = true)
+//    @NotBlank(message = "Data is mandatory")
+    private ArrayList data = new ArrayList();
 }
