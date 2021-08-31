@@ -21,18 +21,12 @@ import java.util.Date;
 @NoArgsConstructor
 public class User {
     @Id
-    @Field(name = "user_id")
-    private long user_id;
+    private String id;
 
-    @Field(name = "first_name")
+    @Field(name = "name")
     @Indexed(unique = true)
-    @NotBlank(message = "First Name is mandatory")
-    private String first_name;
-
-    @Field(name = "last_name")
-    @Indexed(unique = true)
-    @NotBlank(message = "Last Name is mandatory")
-    private String last_name;
+    @NotBlank(message = "Name is mandatory")
+    private String name;
 
     @Field(name = "email")
     @Indexed(unique = true)
@@ -40,19 +34,23 @@ public class User {
     @Email(message = "Not valid email")
     private String email;
 
-    @Field(name = "avatar")
-    private String avatar;
-
-    @Field(name = "register_date")
+    @Field(name = "mobile")
     @Indexed(unique = true)
-    @NotBlank(message = "Register Date is mandatory")
-    private Date register_date;
+    @NotBlank(message = "Mobile is mandatory")
+    private String mobile;
 
-    @Field(name = "active_state")
+    @Field(name = "userName")
     @Indexed(unique = true)
-    @NotBlank(message = "Active State is mandatory")
-    private String active_state;
+    @NotBlank(message = "UserName is mandatory")
+    private String userName;
 
-    @Field(name = "special")
-    private ArrayList<Object> special = new ArrayList<>();
+    @Field(name = "password")
+    @Indexed(unique = true)
+    @NotBlank(message = "Password is mandatory")
+    private String password;
+
+    @Field(name = "role")
+    @Indexed(unique = true)
+    @NotBlank(message = "Role is mandatory")
+    private String role;
 }
