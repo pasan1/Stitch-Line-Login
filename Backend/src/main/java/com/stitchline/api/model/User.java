@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Document("user")
 @Data
@@ -20,12 +21,18 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class User {
     @Id
-    private String id;
+    @Field(name = "user_id")
+    private long user_id;
 
-    @Field(name = "name")
+    @Field(name = "first_name")
     @Indexed(unique = true)
-    @NotBlank(message = "Name is mandatory")
-    private String name;
+    @NotBlank(message = "First Name is mandatory")
+    private String first_name;
+
+    @Field(name = "last_name")
+    @Indexed(unique = true)
+    @NotBlank(message = "Last Name is mandatory")
+    private String last_name;
 
     @Field(name = "email")
     @Indexed(unique = true)
@@ -33,28 +40,19 @@ public class User {
     @Email(message = "Not valid email")
     private String email;
 
-    @Field(name = "mobile")
-    @Indexed(unique = true)
-    @NotBlank(message = "Mobile is mandatory")
-    private String mobile;
+    @Field(name = "avatar")
+    private String avatar;
 
-    @Field(name = "userName")
+    @Field(name = "register_date")
     @Indexed(unique = true)
-    @NotBlank(message = "UserName is mandatory")
-    private String userName;
+    @NotBlank(message = "Register Date is mandatory")
+    private Date register_date;
 
-    @Field(name = "password")
+    @Field(name = "active_state")
     @Indexed(unique = true)
-    @NotBlank(message = "Password is mandatory")
-    private String password;
+    @NotBlank(message = "Active State is mandatory")
+    private String active_state;
 
-    @Field(name = "role")
-    @Indexed(unique = true)
-    @NotBlank(message = "Role is mandatory")
-    private String role;
-
-    @Field(name = "data")
-    @Indexed(unique = true)
-//    @NotBlank(message = "Data is mandatory")
-    private ArrayList data = new ArrayList();
+    @Field(name = "special")
+    private ArrayList<Object> special = new ArrayList<>();
 }
